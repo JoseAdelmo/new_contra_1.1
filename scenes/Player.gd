@@ -25,7 +25,7 @@ func _physics_process(delta):
 ####################################################################################################
 	#AÇÕES, ROTAÇÃO E ETC
 func shoot(dir):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and is_on_floor() and direction.x == 0:
 		b = bullet.instance()
 		b.init(dir)
 		get_parent().add_child(b)
