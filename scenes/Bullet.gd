@@ -1,9 +1,12 @@
 extends Sprite
 
 var direction = false
+var start_position = 0
+var lifespan = 400
 
-func init(d):
+func init(d, ls=400):
 	direction = d
+	lifespan = ls
 	
 func _ready():
 	scale = Vector2(.18, .18)

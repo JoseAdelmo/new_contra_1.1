@@ -1,30 +1,41 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/craftpix-net-507107-free-soldier-sprite-sheets-pixel-art/Soldier_1/Idle.png" type="Texture" id=1]
+[ext_resource path="res://assets/craftpix-net-507107-free-soldier-sprite-sheets-pixel-art/Soldier_1/Shot_1.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.48, 31.867 )
+extents = Vector2( 11.7678, 31.867 )
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -9.1875, -5.55 )
-scale = Vector2( 1.075, 1.01618 )
+scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 1 )
 flip_h = true
 region_enabled = true
 region_rect = Rect2( 40.9646, 55.5413, 45.2325, 68.4948 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Area2D" type="Area2D" parent="Sprite"]
-collision_mask = 0
+scale = Vector2( 1.61517, 1 )
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
-position = Vector2( 3.36886, 3.11705 )
+position = Vector2( 6.08107, 3.11705 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -600, 0 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -35, -4 )
+scale = Vector2( 1, 1.12242 )
+
 [connection signal="area_entered" from="Sprite/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
